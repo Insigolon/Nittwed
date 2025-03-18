@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homepage</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer@latest/dist/model-viewer.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #111;
+      overflow: scroll;
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+  scrollbar-width: none;     /* For Firefox */
+    }
+
+    .model-container {
+      width: 100%; 
+      max-width: 1800px; 
+      height: 500px;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    model-viewer {
+      width: 100%; 
+      height: 100%; 
+      object-fit: contain;
+    }
+
+    @font-face {
+  font-family: 'DarkSame';
+  src: url('/js/DarksameRegular.ttf') format('truetype');
+}
+.kiss-frame {
+  width: 100%; /* Adjust width as needed */
+  height: 500px; /* Adjust height as needed */
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-top: 20px;
+}
+
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #ff0000;
+      filter: contrast(6) blur(2px);
+      font-size: 100px;
+      font-family: 'DarkSame', sans-serif;
+      font-weight: bold;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    .arrow-container {
+      margin-top: 5px;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      max-width: 1800px;
+    }
+
+    .arrow {
+      font-size: 70px;
+      color: #fff;
+      cursor: pointer;
+    }
+    .code-overlay {
+    position: absolute;
+    top: 10%; 
+    left: 5%; 
+    color: #00ff00;
+    font-family:  monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    pointer-events: none;
+    z-index: 2; /* Keep it above the model */
+    animation: scrollCode 10s linear infinite;
+    animation-delay: 1ms;
+    text-shadow: 
+    0 0 5px #00ff00, 
+    0 0 10px #00ff00, 
+    0 0 20px #00ff00, 
+    0 0 30px #00ff00, 
+    0 0 40px #00ff00;
+  }
+  @keyframes scrollCode {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(-100%);
+      }
+    }
+    .ticket-frame, .footer-container {
+      width: 100%; 
+      height: 500px; 
+      border: none;
+      display: block;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+    .footer-container {
+      height: 350px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Container for 3D Model -->
+<div class="model-container">
+  <model-viewer 
+    src="../models/Tuliips.glb" 
+    alt="A 3D model of tulips"
+    auto-rotate
+    shadow-intensity="1"
+    environment-image="neutral"
+    exposure="1"
+    tone-mapping="neutral"
+    metalness="1"
+    roughness="0.2"
+    rotation="0deg 45deg 0deg"
+    field-of-view="30deg"
+    camera-orbit="0deg 90deg 2m"
+    camera-target="0m 0m 0m"
+    rotation-per-second="30deg"
+    disable-zoom
+    disable-pan
+    disable-tap
+    interaction-prompt="none"
+    min-camera-orbit="auto 75deg auto"
+    max-camera-orbit="auto 75deg auto">
+    <div class="code-overlay">
+      "name": "nittweb",<br>
+      "version": "1.0.0",<br>
+      "lockfileVersion": 3,<br>
+      "requires": true,<br>
+      "packages": <br>
+        "": {<br>
+          "name": "nittweb",<br>
+          "version": "1.0.0",<br>
+          "license": "ISC",<br>
+          "dependencies": {<br>
+            "three": "^0.174.0"<br>
+          },<br>
+          "devDependencies": {<br>
+            "parcel": "^2.13.3"<br>
+          }<br>
+        },<br>
+        "node_modules/@babel/code-frame": <br>
+          "version": "7.26.2",<br>
+          "resolved": "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.26.2.tgz",<br>
+          "integrity": "sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ==",<br>
+          "dev": true,<br>
+          "license": "MIT",<br>
+          "dependencies": {<br>
+            "@babel/helper-validator-identifier": "^7.25.9",<br>
+            "js-tokens": "^4.0.0",<br>
+            "picocolors": "^1.0.0"<br>
+          },<br>
+    FUNCTION: INITA - Initialize ACIA<br>
+    INPUT: none<br>
+    OUTPUT: none<br>
+    CALLS: none<br>
+    DESTROYS: acc A<br>
+    LDA #$13<br>
+    STA ACIA<br>
+    LDA #$84<br>
+    STA ACIA<br>
+    JMP SIGNON<br>
+    FUNCTION: INCH - Input character<br>
+    OUTPUT: char in acc A<br>
+    CALLS: INCH<br>
+    DESCRIPTION: Gets character from terminal<br>
+    STATUS:<br>
+    ASR A<br>
+    <br>
+    </div>
+  </model-viewer>
+
+  <div class="overlay-text">Pumpkin and her ghost</div>
+</div>
+
+<!-- Arrow Container -->
+<div class="arrow-container" onclick="scrollToNext()">
+  <div class="arrow">🡳</div>
+</div>
+<script>
+  function scrollToNext() {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  }
+</script>
+<!-- Ticket Section -->
+<iframe src="Tickets.html" class="ticket-frame"></iframe>
+
+<iframe src="eyes.html" class="kiss-frame"></iframe>
+
+
+<!-- Footer Section -->
+<iframe src="footer.html" class="footer-container"></iframe>
+
+</body>
+</html>

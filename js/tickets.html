@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ticket Scroller</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: 'Pixelfy Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .scroller {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .scroller::-webkit-scrollbar {
+      display: none;
+    }
+
+    .ticket {
+      flex: 0 0 auto;
+      width: 150px;
+      height: 300px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      scroll-snap-align: start;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .ticket:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .ticket img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .ticket:hover img {
+      transform: scale(1.1);
+    }
+
+    .ticket::before,
+    .ticket::after {
+      content: "";
+      width: 15px;
+      height: 15px;
+      background-color: #111;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .ticket::before {
+      left: -7.5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .ticket::after {
+      right: -7.5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .title {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      color: #f00;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .title span {
+      display: inline-block;
+      animation: bounce 1s ease infinite;
+    }
+
+    .title span:nth-child(1) { animation-delay: 0.1s; }
+    .title span:nth-child(2) { animation-delay: 0.2s; }
+    .title span:nth-child(3) { animation-delay: 0.3s; }
+  </style>
+</head>
+<body>
+  
+  
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet" />
+    <title>US TOGETHER</title>
+    <style>
+      body {
+        background-color: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .scroller-container {
+      width: 100%; /* Controls how much of the screen the scroller takes */
+      overflow: hidden;
+    }
+    .scroller {
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+      scroll-snap-type: x mandatory;
+      overflow-x: scroll;
+      scrollbar-width: none; /* Hides scrollbar for Firefox */
+      -ms-overflow-style: none; /* Hides scrollbar for IE/Edge */
+    }
+
+    .scroller::-webkit-scrollbar {
+      display: none; /* Hides scrollbar for Chrome/Safari */
+    }
+
+      .title-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+     /*Not gonna use this*.*/
+      .heart {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(-45deg);
+      margin-top: 20px;
+    }
+    /*This part was bullshit*/
+    .ticket:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Fuck with the picture settings */
+    .ticket img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      filter: grayscale(0%) contrast(100%) brightness(110%);
+
+    }
+
+    .ticket:hover img {
+      transform: scale(1.1);
+    }
+
+    .ticket::before,
+    .ticket::after {
+      content: "";
+      width: 15px;
+      height: 15px;
+      background-color: #111;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .ticket::before {
+      left: -7.5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .ticket::after {
+      right: -7.5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  
+      .title {
+        font-family: 'Pixelify Sans', sans-serif;
+        color: white;
+        font-size: 20px;
+        letter-spacing: 2px;
+        display: inline-block;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    
+  <!--Images  Go Here-->
+    <div class="scroller-container">
+        <div class="scroller">
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.14 PM.jpeg" alt="Ticket 1" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.15 PM (1).jpeg" alt="Ticket 2" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.30 PM.jpeg" alt="Ticket 3" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.16 PM (1).jpeg" alt="Ticket 4" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.16 PM (2).jpeg" alt="Ticket 5" />
+          </div>
+         
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.17 PM (1).jpeg" alt="Ticket 7" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.17 PM (2).jpeg" alt="Ticket 8" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.17 PM.jpeg" alt="Ticket 9" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.18 PM (1).jpeg" alt="Ticket 10" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.18 PM (2).jpeg" alt="Ticket 11" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.18 PM.jpeg" alt="Ticket 12" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.20 PM.jpeg" alt="Ticket 13" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.21 PM (1).jpeg" alt="Ticket 14" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.21 PM.jpeg" alt="Ticket 15" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.22 PM (1).jpeg" alt="Ticket 16" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.22 PM.jpeg" alt="Ticket 17" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.23 PM.jpeg" alt="Ticket 18" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.24 PM (1).jpeg" alt="Ticket 19" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.24 PM.jpeg" alt="Ticket 20" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.25 PM (1).jpeg" alt="Ticket 21" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.25 PM (2).jpeg" alt="Ticket 22" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.25 PM.jpeg" alt="Ticket 23" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.26 PM.jpeg" alt="Ticket 24" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.27 PM (1).jpeg" alt="Ticket 25" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.27 PM (2).jpeg" alt="Ticket 26" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.27 PM.jpeg" alt="Ticket 27" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.28 PM (1).jpeg" alt="Ticket 28" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.28 PM.jpeg" alt="Ticket 29" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.29 PM (1).jpeg" alt="Ticket 30" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.29 PM (2).jpeg" alt="Ticket 31" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.29 PM.jpeg" alt="Ticket 32" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.30 PM (1).jpeg" alt="Ticket 33" />
+          </div>
+          <div class="ticket">
+            <img src="/imgs/WhatsApp Image 2025-03-15 at 3.36.15 PM.jpeg" alt="Ticket 34" />
+          </div>
+
+        </div>
+      </div>
+      
+      <!--This changes the us toghether shit-->
+      <div class="title">
+        <span>✦</span><span>N</span><span>A</span><span>V</span><span>U</span> <span>J</span><span>O</span><span>T</span><span>H</span><span>E</span><span>G</span><span>E</span><span>✦</span>
+      </div>
+  
+  
+  <script>
+    const scroller = document.querySelector('.scroller');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    scroller.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - scroller.offsetLeft;
+      scrollLeft = scroller.scrollLeft;
+    });
+
+    scroller.addEventListener('mouseleave', () => {
+      isDown = false;
+    });
+
+    scroller.addEventListener('mouseup', () => {
+      isDown = false;
+    });
+
+    scroller.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - scroller.offsetLeft;
+      const walk = (x - startX) * 2;
+      scroller.scrollLeft = scrollLeft - walk;
+    });
+  </script>
+</body>
+</html>

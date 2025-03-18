@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Footer Example</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .footer {
+      background-color: #111;
+      color: #8941879b;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 60px;
+      width: 100%;
+      max-width: 1200px;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: rgba(149, 69, 146, 0.7);
+    }
+
+    .footer-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-section span,
+    .footer-section a {
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section span:hover,
+    .footer-section a:hover {
+      color: #ff4dff;
+    }
+
+    .footer-text {
+      font-size: 80px;
+      font-weight: 700;
+      letter-spacing: -3px;
+      text-align: center;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    @media (max-width: 768px) {
+      .footer-text {
+        font-size: 50px;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="footer">
+  <div class="footer-top">
+    <div class="footer-section">
+      <span>Thank you for going through this, ik it was supposed to come on Valentine's Day</span>
+      <span>But I couldnt publish it then and then I got new ideas so here we go!</span>
+    </div>
+    <div class="footer-section">
+      <span>MATHE,</span>
+      <span>YEN SAMACHARA</span>
+      <span>Am I being a dick?</span>
+    </div>
+    <div class="footer-section">
+      <span> 9-11-2023 (our anniversary)</span>
+      <span>I wish I could go back to that night trust me nothing in this world is worth more than you (<a href="https://www.teamarcis.com/" target="_blank">arcis</a>) </span>
+      <span><a href="https://www.instagram.com/p/CHffISHJ5F7/" target="_blank">I prefer robin and ted </a></span>
+    </div>
+    <div class="footer-section">
+      <span>You should see the comments in the code, theyre really funny!</span>
+      <span>(Ctrl + Shift + I)</span>
+      <a href="https://yeshd.net/notting-hill-1999" target="_blank">Notting Hill →</a>
+    </div>
+  </div>
+  <div class="footer-text">I LOVU YOUUUUUUU</div>
+</div>
+
+</body>
+</html>

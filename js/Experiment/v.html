@@ -1,0 +1,47 @@
+"name": "nittweb",<br>
+      "version": "1.0.0",<br>
+      "lockfileVersion": 3,<br>
+      "requires": true,<br>
+      "packages": <br>
+        "": {<br>
+          "name": "nittweb",<br>
+          "version": "1.0.0",<br>
+          "license": "ISC",<br>
+          "dependencies": {<br>
+            "three": "^0.174.0"<br>
+          },<br>
+          "devDependencies": {<br>
+            "parcel": "^2.13.3"<br>
+          }<br>
+        },<br>
+        "node_modules/@babel/code-frame": <br>
+          "version": "7.26.2",<br>
+          "resolved": "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.26.2.tgz",<br>
+          "integrity": "sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ==",<br>
+          "dev": true,<br>
+          "license": "MIT",<br>
+          "dependencies": {<br>
+            "@babel/helper-validator-identifier": "^7.25.9",<br>
+            "js-tokens": "^4.0.0",<br>
+            "picocolors": "^1.0.0"<br>
+          },<br>
+    FUNCTION: INITA - Initialize ACIA<br>
+    INPUT: none<br>
+    OUTPUT: none<br>
+    CALLS: none<br>
+    DESTROYS: acc A<br>
+    LDA #$13<br>
+    STA ACIA<br>
+    LDA #$84<br>
+    STA ACIA<br>
+    JMP SIGNON<br>
+    FUNCTION: INCH - Input character<br>
+    OUTPUT: char in acc A<br>
+    CALLS: INCH<br>
+    DESCRIPTION: Gets character from terminal<br>
+    STATUS:<br>
+    ASR A<br>
+    <br>
+    (Repeating lines for effect)
+  </div>
+</div>

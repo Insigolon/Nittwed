@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kiss Choice</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #111;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      flex-direction: column;
+      text-align: center;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .options {
+      display: flex;
+      gap: 30px;
+    }
+
+    .eye-btn {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      border: 3px solid #00b7ff;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .eye-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #000000;
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 30px;
+      color: #ffffff;
+      height: 40px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Who you gonna kiss? 😘</h1>
+
+<div class="options">
+  <div 
+    class="eye-btn" 
+    onclick="showMessage('hers')" 
+    style="background-image: url('/imgs/hers.jpeg');"
+    title="Her Eyes"
+  ></div>
+  
+  <div 
+    class="eye-btn" 
+    onclick="showMessage('mine')" 
+    style="background-image: url('/imgs/785b8b81-e4b6-44ab-8f70-5e6f143a71de.jpeg');"
+    title="My Eyes"
+  ></div>
+  
+  <div 
+    class="eye-btn" 
+    onclick="showMessage('slash')" 
+    style="background-image: url('/imgs/slash.jpeg');"
+    title="Slash's Eyes"
+  ></div>
+</div>
+
+<div id="message"></div>
+
+<script>
+  function showMessage(choice) {
+    const message = document.getElementById('message');
+    if (choice === 'hers') {
+      message.textContent = 'Narcissite ';
+    } else if (choice === 'mine') {
+      message.textContent = "Awww (I would've picked Slash )";
+    } else if (choice === 'slash') {
+      message.textContent = 'Slash nimge website madkodthana? ';
+    }
+  }
+</script>
+
+</body>
+</html>
