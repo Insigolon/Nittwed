@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Love Maze</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap');
+
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            background-color: #000000;
+            color: #ff6b81;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            gap: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ff4757;
+        }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            background: #000;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        select, button {
+            font-family: "Space Grotesk", sans-serif;
+            padding: 10px;
+            border: 2px solid #ff4757;
+            border-radius: 8px;
+            background-color: #000;
+            color: #ff4757;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #ff6b81;
+            color: #000;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            color: #00ff6a;
+            margin-top: 10px;
+            min-height: 24px;
+            text-align: center;
+        }
+
+        .retry-button {
+            display: none;
+            margin-top: 10px;
+            background-color: #ff4757;
+            color: #000;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .retry-button:hover {
+            background-color: #ff6b81;
+        }
+
+        /* Retro-style pop-up */
+        .win-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #000;
+            padding: 20px;
+            border: 4px solid #ff4757;
+            box-shadow: 5px 5px 0px #ff6b81;
+            font-family: 'Courier New', Courier, monospace;
+            color: #ff6b81;
+            z-index: 10;
+            width: 300px;
+            text-align: center;
+        }
+
+        .win-popup button {
+            background: #ff4757;
+            color: #000;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 10px;
+            border: 2px solid #ff6b81;
+            transition: 0.3s ease;
+        }
+
+        .win-popup button:hover {
+            background: #ff6b81;
+            border-color: #ff4757;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Love Maze</h1>
+<div class="game-container">
+    <div>
+        <label>Place:</label>
+        <select id="place"></select>
+    </div>
+    <div>
+        <label>Memory:</label>
+        <select id="memory"></select>
+    </div>
+    <div>
+        <label>Food:</label>
+        <select id="food"></select>
+    </div>
+    <button onclick="checkMatch()">Submit</button>
+    <button class="retry-button" onclick="retry()">Retry</button>
+    <div class="message" id="message"></div>
+</div>
+
+<!-- Win Popup -->
+<div class="win-popup" id="winPopup">
+    <p>🎉 You've got a free date! <br>(I can't say no) ❤️</p>
+    <button onclick="closePopup()">Close</button>
+</div>
+
+<script>
+    let combinations = [
+        { place: "Mateos", memory: "Weird painting", food: "Vegetable burger" },
+        { place: "Church Street Book Shop", memory: "Lady sold a gift cook book", food: "Pizza" },
+        { place: "Forum", memory: "Abandoned site", food: "McD" },
+        { place: "Ethnic day", memory: "I pissed you off", food: "Burrito" }
+    ];
+
+    let remainingCombinations = [...combinations];
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function loadOptions() {
+        if (remainingCombinations.length === 0) {
+            showWinPopup();
+            return;
+        }
+
+        let places = remainingCombinations.map(c => c.place);
+        let memories = remainingCombinations.map(c => c.memory);
+        let foods = remainingCombinations.map(c => c.food);
+
+        shuffle(places);
+        shuffle(memories);
+        shuffle(foods);
+
+        const placeSelect = document.getElementById("place");
+        const memorySelect = document.getElementById("memory");
+        const foodSelect = document.getElementById("food");
+
+        placeSelect.innerHTML = '<option value="">-- Select --</option>';
+        memorySelect.innerHTML = '<option value="">-- Select --</option>';
+        foodSelect.innerHTML = '<option value="">-- Select --</option>';
+
+        places.forEach(place => {
+            placeSelect.innerHTML += `<option value="${place}">${place}</option>`;
+        });
+        memories.forEach(memory => {
+            memorySelect.innerHTML += `<option value="${memory}">${memory}</option>`;
+        });
+        foods.forEach(food => {
+            foodSelect.innerHTML += `<option value="${food}">${food}</option>`;
+        });
+    }
+
+    function checkMatch() {
+        const place = document.getElementById('place').value;
+        const memory = document.getElementById('memory').value;
+        const food = document.getElementById('food').value;
+
+        const correctCombo = remainingCombinations.find(combo =>
+            combo.place === place &&
+            combo.memory === memory &&
+            combo.food === food
+        );
+
+        if (correctCombo) {
+            remainingCombinations = remainingCombinations.filter(combo => combo !== correctCombo);
+            loadOptions();
+        } else {
+            document.getElementById('message').innerHTML = "Nice try! Try again.";
+            document.querySelector('.retry-button').style.display = 'block';
+        }
+    }
+
+    function retry() {
+        document.getElementById('message').innerHTML = "";
+        document.querySelector('.retry-button').style.display = 'none';
+        loadOptions();
+    }
+
+    function showWinPopup() {
+        document.querySelector('.game-container').style.display = 'none';
+        document.getElementById('winPopup').style.display = 'block';
+    }
+
+    function closePopup() {
+        document.getElementById('winPopup').style.display = 'none';
+    }
+
+    window.onload = loadOptions;
+</script>
+
+</body>
+</html>
